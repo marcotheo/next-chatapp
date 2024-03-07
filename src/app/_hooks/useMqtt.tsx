@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext, ReactNode } from "react";
 import mqtt from "mqtt";
 
 export interface IMqttProvider {
-  children: JSX.Element | JSX.Element[] | string;
+  children: ReactNode;
 }
 
 export const MqttContext = createContext<null | mqtt.MqttClient>(null);
