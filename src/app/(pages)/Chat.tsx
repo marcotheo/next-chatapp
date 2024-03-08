@@ -1,21 +1,14 @@
 "use client";
 
-import * as React from "react";
+import { useContext, useEffect, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  uniqueNamesGenerator,
-  adjectives,
-  colors,
-  animals,
-} from "unique-names-generator";
-
-const userName: string = uniqueNamesGenerator({
-  dictionaries: [colors, adjectives, animals],
-});
+import { UserContext } from "../_hooks/useMqtt";
 
 export interface IChatProps {}
 
 export function Chat(props: IChatProps) {
+  const userName = useContext(UserContext);
+
   return (
     <div className="min-w-[40rem]">
       <div className="flex justify-end">

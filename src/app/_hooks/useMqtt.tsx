@@ -2,14 +2,22 @@
 
 import { useEffect, useState, createContext, ReactNode } from "react";
 import mqtt from "mqtt";
+import {
+  uniqueNamesGenerator,
+  adjectives,
+  colors,
+  animals,
+} from "unique-names-generator";
 
 export interface IMqttProvider {
   children: ReactNode;
+  userName: string;
 }
 
 export const MqttContext = createContext<null | mqtt.MqttClient>(null);
+export const UserContext = createContext("");
 
-export function MqttProvider({ children }: IMqttProvider) {
+export function MqttProvider({ children, userName }: IMqttProvider) {
   const [client, setClient] = useState<null | mqtt.MqttClient>(null);
 
   useEffect(() => {
@@ -37,5 +45,9 @@ export function MqttProvider({ children }: IMqttProvider) {
     });
   }, []);
 
-  return <MqttContext.Provider value={client}>{children}</MqttContext.Provider>;
+  return (
+    <MqttContext.Provider value={client}>
+      <UserContext.Provider value={userName}>{children}</UserContext.Provider>
+    </MqttContext.Provider>
+  );
 }
