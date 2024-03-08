@@ -2,12 +2,6 @@
 
 import { useEffect, useState, createContext, ReactNode } from "react";
 import mqtt from "mqtt";
-import {
-  uniqueNamesGenerator,
-  adjectives,
-  colors,
-  animals,
-} from "unique-names-generator";
 
 export interface IMqttProvider {
   children: ReactNode;
